@@ -1,0 +1,108 @@
+/* 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 링크 스타일 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 헤더 고정 시 그림자 추가 */
+#navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 섹션 애니메이션 */
+section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 호버 효과 */
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+/* 프로젝트 카드 호버 */
+.bg-white.rounded-lg {
+  transition: all 0.3s ease;
+}
+
+.bg-white.rounded-lg:hover {
+  transform: translateY(-8px);
+}
+
+/* 기술 태그 */
+.bg-primary.text-white,
+.bg-secondary.text-white,
+.bg-gray-400.text-white {
+  transition: all 0.3s ease;
+}
+
+.bg-primary.text-white:hover,
+.bg-secondary.text-white:hover,
+.bg-gray-400.text-white:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 반응형 이미지 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 스크롤 시 요소 노출 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 네비게이션 링크 활성 상태 */
+.nav-link.active {
+  color: #3B82F6;
+  border-bottom: 2px solid #3B82F6;
+}
+
+/* 다크 모드 전환 애니메이션 */
+html.dark {
+  color-scheme: dark;
+}
+
+/* 버튼 기본 스타일 */
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,24 @@
+# 노드 모듈
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 빌드 결과
+dist/
+build/
+
+# 환경 변수
+.env
+.env.local
+
+# 캐시
+.cache/
+.parcel-cache/

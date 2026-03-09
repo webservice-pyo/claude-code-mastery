@@ -1,0 +1,20 @@
+{
+  "name": "developer-portfolio-resume",
+  "version": "1.0.0",
+  "description": "개발자 웹 이력서 포트폴리오 사이트",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch",
+    "build": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --minify"
+  },
+  "keywords": [
+    "resume",
+    "portfolio",
+    "developer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+}

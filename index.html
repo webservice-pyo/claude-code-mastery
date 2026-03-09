@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="개발자 웹 이력서 포트폴리오">
+    <meta name="author" content="개발자 이름">
+    <title>개발자 포트폴리오 | 웹 이력서</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 커스텀 스타일 -->
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    <!-- 네비게이션 -->
+    <nav id="navbar" class="fixed top-0 w-full bg-white dark:bg-dark shadow-md z-50 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary">Portfolio</h1>
+            <div class="flex items-center gap-4">
+                <ul class="hidden md:flex gap-6">
+                    <li><a href="#home" class="hover:text-primary transition">홈</a></li>
+                    <li><a href="#about" class="hover:text-primary transition">소개</a></li>
+                    <li><a href="#experience" class="hover:text-primary transition">경력</a></li>
+                    <li><a href="#skills" class="hover:text-primary transition">기술</a></li>
+                    <li><a href="#projects" class="hover:text-primary transition">프로젝트</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition">연락처</a></li>
+                </ul>
+                <!-- 다크모드 토글 -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <span class="dark:hidden">🌙</span>
+                    <span class="hidden dark:inline">☀️</span>
+                </button>
+                <!-- 모바일 메뉴 토글 -->
+                <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                    <span>≡</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 모바일 메뉴 -->
+    <div id="mobile-menu" class="fixed top-16 left-0 w-full bg-white dark:bg-dark shadow-lg hidden z-40">
+        <ul class="flex flex-col gap-4 p-4">
+            <li><a href="#home" class="hover:text-primary transition">홈</a></li>
+            <li><a href="#about" class="hover:text-primary transition">소개</a></li>
+            <li><a href="#experience" class="hover:text-primary transition">경력</a></li>
+            <li><a href="#skills" class="hover:text-primary transition">기술</a></li>
+            <li><a href="#projects" class="hover:text-primary transition">프로젝트</a></li>
+            <li><a href="#contact" class="hover:text-primary transition">연락처</a></li>
+        </ul>
+    </div>
+
+    <!-- 주 콘텐츠 (상단 여백 추가) -->
+    <main class="pt-20">
+        <!-- Hero 섹션 -->
+        <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-secondary text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-6xl font-bold mb-4">안녕하세요!</h2>
+                <p class="text-2xl mb-8">저는 개발자입니다</p>
+                <p class="text-lg mb-8 max-w-2xl">웹 개발과 소프트웨어 엔지니어링에 관심이 있는 개발자입니다. 혁신적인 솔루션을 만드는 것을 좋아합니다.</p>
+                <div class="flex gap-4 justify-center">
+                    <a href="#contact" class="px-8 py-3 bg-white text-primary font-bold rounded-lg hover:bg-gray-100 transition">연락하기</a>
+                    <a href="#projects" class="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-primary transition">포트폴리오 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 소개 섹션 -->
+        <section id="about" class="py-20 px-4 bg-white dark:bg-dark">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-4xl font-bold mb-8 text-center">소개</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <img src="./assets/images/profile.jpg" alt="프로필 사진" class="rounded-lg w-full object-cover h-80">
+                    </div>
+                    <div>
+                        <p class="text-lg mb-4">저는 5년 이상의 웹 개발 경험을 가진 풀스택 개발자입니다.</p>
+                        <p class="text-lg mb-4">최신 기술을 학습하고 적용하는 것을 즐기며, 사용자 중심의 솔루션을 만드는 데 집중합니다.</p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com" target="_blank" class="text-primary hover:text-secondary transition text-2xl">GitHub</a>
+                            <a href="https://linkedin.com" target="_blank" class="text-primary hover:text-secondary transition text-2xl">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 경력 섹션 -->
+        <section id="experience" class="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-4xl font-bold mb-12 text-center">경력</h3>
+                <div class="space-y-8">
+                    <div class="bg-white dark:bg-dark p-6 rounded-lg shadow-md border-l-4 border-primary">
+                        <h4 class="text-2xl font-bold mb-2">시니어 개발자</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">ABC 회사 | 2022년 - 현재</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>풀스택 웹 애플리케이션 개발</li>
+                            <li>팀 리드로서 코드 리뷰 및 멘토링</li>
+                            <li>성능 최적화 및 아키텍처 개선</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-dark p-6 rounded-lg shadow-md border-l-4 border-secondary">
+                        <h4 class="text-2xl font-bold mb-2">주니어 개발자</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">XYZ 스타트업 | 2020년 - 2022년</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>프론트엔드 기능 개발 및 유지보수</li>
+                            <li>버그 수정 및 성능 최적화</li>
+                            <li>신입 개발자 온보딩 지원</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 기술 스택 섹션 -->
+        <section id="skills" class="py-20 px-4 bg-white dark:bg-dark">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-4xl font-bold mb-12 text-center">기술 스택</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">프론트엔드</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">HTML</span>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">TailwindCSS</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">백엔드</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm">Express</span>
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">도구</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm">Git</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm">Docker</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm">VS Code</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 프로젝트 섹션 -->
+        <section id="projects" class="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-4xl font-bold mb-12 text-center">프로젝트</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-dark rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="./assets/images/project1.jpg" alt="프로젝트 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-2">프로젝트 1</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">간단한 프로젝트 설명</p>
+                            <div class="flex gap-2 mb-4">
+                                <span class="bg-primary text-white px-2 py-1 rounded text-sm">React</span>
+                                <span class="bg-primary text-white px-2 py-1 rounded text-sm">Node.js</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-primary hover:text-secondary transition">GitHub →</a>
+                                <a href="#" class="text-primary hover:text-secondary transition">라이브 데모 →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-dark rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                        <img src="./assets/images/project2.jpg" alt="프로젝트 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-2">프로젝트 2</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">간단한 프로젝트 설명</p>
+                            <div class="flex gap-2 mb-4">
+                                <span class="bg-primary text-white px-2 py-1 rounded text-sm">Vue.js</span>
+                                <span class="bg-primary text-white px-2 py-1 rounded text-sm">Python</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="#" class="text-primary hover:text-secondary transition">GitHub →</a>
+                                <a href="#" class="text-primary hover:text-secondary transition">라이브 데모 →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 연락처 섹션 -->
+        <section id="contact" class="py-20 px-4 bg-white dark:bg-dark">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-4xl font-bold mb-8">연락처</h3>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">프로젝트나 협업 제안이 있으신가요? 언제든지 연락주세요!</p>
+                <div class="flex flex-col md:flex-row justify-center gap-8 mb-8">
+                    <div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">이메일</p>
+                        <a href="mailto:example@example.com" class="text-primary hover:text-secondary transition text-xl">example@example.com</a>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2">전화</p>
+                        <a href="tel:+821012345678" class="text-primary hover:text-secondary transition text-xl">010-1234-5678</a>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-6">
+                    <a href="https://github.com" target="_blank" class="text-primary hover:text-secondary transition text-3xl">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" class="text-primary hover:text-secondary transition text-3xl">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank" class="text-primary hover:text-secondary transition text-3xl">Twitter</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-dark text-white py-8 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <p>&copy; 2024 개발자 포트폴리오. 모든 권리 보유.</p>
+        </div>
+    </footer>
+
+    <!-- 스크립트 -->
+    <script src="./scripts/main.js"></script>
+</body>
+</html>
