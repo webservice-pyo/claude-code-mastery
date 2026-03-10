@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- 배경 -->
+  <rect width="400" height="400" fill="#e2e8f0"/>
+
+  <!-- 사람 실루엣 -->
+  <!-- 머리 -->
+  <circle cx="200" cy="100" r="40" fill="#94a3b8"/>
+
+  <!-- 몸 -->
+  <path d="M 160 150 L 140 280 L 170 280 L 170 220 L 230 220 L 230 280 L 260 280 L 240 150 Q 200 140 160 150" fill="#94a3b8"/>
+
+  <!-- 텍스트 -->
+  <text x="200" y="330" font-size="24" font-weight="bold" fill="#94a3b8" text-anchor="middle" font-family="Inter, sans-serif">Profile Photo</text>
+</svg>

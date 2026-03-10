@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <!-- 배경 -->
+  <rect width="800" height="400" fill="#dbeafe"/>
+
+  <!-- 코드 브래킷 아이콘 -->
+  <!-- 왼쪽 괄호 -->
+  <path d="M 280 150 L 240 200 L 280 250" stroke="#3b82f6" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 오른쪽 괄호 -->
+  <path d="M 520 150 L 560 200 L 520 250" stroke="#3b82f6" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 중간 라인 -->
+  <line x1="300" y1="200" x2="500" y2="200" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- 텍스트 -->
+  <text x="400" y="320" font-size="36" font-weight="bold" fill="#3b82f6" text-anchor="middle" font-family="Inter, sans-serif">Project 1</text>
+</svg>
