@@ -7,13 +7,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#3B82F6',
-        secondary: '#10B981',
-        dark: '#1F2937',
-        light: '#F9FAFB',
+        'bg-primary': '#0F172A',
+        'bg-surface': '#1E293B',
+        'bg-elevated': '#334155',
+        'accent': '#F59E0B',
+        'accent-light': '#FBBF24',
+        'text-pri': '#E2E8F0',
+        'text-sub': '#94A3B8',
+        'text-muted': '#64748B',
       },
       fontFamily: {
-        sans: ['Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Space Grotesk', 'Inter', 'sans-serif'],
       },
     },
   },

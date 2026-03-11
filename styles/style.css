@@ -1,4 +1,16 @@
-/* 기본 스타일 */
+/* ===== CSS 커스텀 변수 정의 ===== */
+:root {
+  --bg-primary: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-elevated: #334155;
+  --accent: #F59E0B;
+  --accent-light: #FBBF24;
+  --text-primary: #E2E8F0;
+  --text-sub: #94A3B8;
+  --text-muted: #64748B;
+}
+
+/* ===== 기본 스타일 ===== */
 * {
   margin: 0;
   padding: 0;
@@ -6,103 +18,652 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s ease;
+  /* 미세한 그리드 패턴 배경 */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-/* 부드러운 스크롤 */
 html {
   scroll-behavior: smooth;
 }
 
-/* 링크 스타일 */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* 헤더 고정 시 그림자 추가 */
-#navbar.scrolled {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* 섹션 애니메이션 */
-section {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 호버 효과 */
-.hover\:shadow-xl:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-}
-
-/* 프로젝트 카드 호버 */
-.bg-white.rounded-lg {
-  transition: all 0.3s ease;
-}
-
-.bg-white.rounded-lg:hover {
-  transform: translateY(-8px);
-}
-
-/* 기술 태그 */
-.bg-primary.text-white,
-.bg-secondary.text-white,
-.bg-gray-400.text-white {
-  transition: all 0.3s ease;
-}
-
-.bg-primary.text-white:hover,
-.bg-secondary.text-white:hover,
-.bg-gray-400.text-white:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* 반응형 이미지 */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* 스크롤 시 요소 노출 */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* 네비게이션 링크 활성 상태 */
-.nav-link.active {
-  color: #3B82F6;
-  border-bottom: 2px solid #3B82F6;
-}
-
-/* 다크 모드 전환 애니메이션 */
-html.dark {
-  color-scheme: dark;
-}
-
-/* 버튼 기본 스타일 */
-button {
-  cursor: pointer;
+/* ===== 네비게이션 스타일 ===== */
+#navbar {
+  background-color: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(244, 158, 11, 0.1);
   transition: all 0.3s ease;
 }
 
+#navbar.shadow-lg {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(244, 158, 11, 0.2);
+}
+
+.nav-link {
+  position: relative;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+
+.nav-link.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ===== 버튼 스타일 ===== */
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
 button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+#theme-toggle {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--bg-elevated);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+#theme-toggle:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--accent);
+}
+
+/* ===== Hero 섹션 ===== */
+#home {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-surface) 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero 배경 장식 블롭 */
+#home::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -100px;
+  right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+#home::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -50px;
+  left: -50px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Hero 이름 그라데이션 텍스트 */
+.hero-name {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+/* 통계 숫자 강조 */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-sub);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ===== 섹션 공통 헤더 ===== */
+.section-label {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+/* ===== 섹션 배경 교차 패턴 ===== */
+section {
+  padding: 5rem 1rem;
+}
+
+section:nth-child(odd) {
+  background-color: var(--bg-primary);
+}
+
+section:nth-child(even) {
+  background-color: var(--bg-surface);
+}
+
+/* Hero 및 특정 섹션 제외 */
+#home {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-surface) 100%);
+}
+
+#about {
+  background-color: var(--bg-surface);
+}
+
+#experience {
+  background-color: var(--bg-primary);
+}
+
+#skills {
+  background-color: var(--bg-surface);
+}
+
+#projects {
+  background-color: var(--bg-primary);
+}
+
+#contact {
+  background-color: var(--bg-surface);
+}
+
+#social {
+  background-color: var(--bg-primary);
+}
+
+/* ===== Experience 타임라인 ===== */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--bg-surface);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -1.2rem;
+  top: 12px;
+  width: 2px;
+  height: calc(100% + 1rem);
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  opacity: 0.3;
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+.timeline-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.timeline-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+  transform: translateX(8px);
+}
+
+.timeline-card h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-card p {
+  color: var(--text-sub);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-card ul {
+  list-style: none;
+  color: var(--text-sub);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.timeline-card li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.timeline-card li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ===== 카드 공통 스타일 ===== */
+.card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+}
+
+/* ===== Skills 섹션 ===== */
+.skill-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+}
+
+.skill-icon {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.skill-badge {
+  display: inline-block;
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0.3rem;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  background-color: rgba(245, 158, 11, 0.25);
+  border-color: var(--accent);
+}
+
+/* ===== Projects 섹션 ===== */
+.project-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2);
+  transform: translateY(-8px);
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  height: 12rem;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+}
+
+.project-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-image::after {
+  opacity: 1;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.project-content p {
+  color: var(--text-sub);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-tech-tag {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.project-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.project-link {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-link:hover {
+  color: var(--accent-light);
+  transform: translateX(4px);
+}
+
+/* ===== Contact 섹션 ===== */
+.contact-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.contact-label {
+  font-size: 0.875rem;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.contact-link {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+}
+
+/* ===== Social 섹션 ===== */
+.social-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(244, 158, 11, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.social-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+}
+
+.social-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon svg {
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+}
+
+.social-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.social-card p {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: var(--bg-primary);
+  border-top: 1px solid rgba(244, 158, 11, 0.1);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-sub);
+}
+
+footer p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== 스크롤 애니메이션 ===== */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== 커스텀 애니메이션 ===== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+  }
+}
+
+/* ===== 커스텀 스크롤바 ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* ===== 반응형 설정 ===== */
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  section {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .social-card {
+    padding: 1rem;
+  }
 }

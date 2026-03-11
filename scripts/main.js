@@ -2,9 +2,9 @@
 const themeToggle = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 
-// 페이지 로드 시 사용자 설정 복구
+// 페이지 로드 시 사용자 설정 복구 (기본값: 다크모드)
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+if (savedTheme !== 'light') {
   htmlElement.classList.add('dark');
 }
 
@@ -94,15 +94,15 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
+      entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     }
   });
 }, observerOptions);
 
-// 모든 섹션 관찰
-document.querySelectorAll('section').forEach(section => {
-  observer.observe(section);
+// 모든 섹션과 fade-in-element에 visible 클래스를 토글
+document.querySelectorAll('section, .fade-in-element').forEach(element => {
+  observer.observe(element);
 });
 
 // ===== 프로필 이미지 로드 에러 처리 =====
