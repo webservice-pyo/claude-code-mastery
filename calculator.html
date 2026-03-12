@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 계산기 애니메이션 */
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-press {
+            animation: buttonPress 0.1s ease;
+        }
+
+        /* 디스플레이 스타일 */
+        .display-text {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            word-break: break-all;
+        }
+
+        .calculator {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+        }
+
+        .dark .calculator {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-sm">
+            <!-- 헤더 -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">계산기</h1>
+                <button
+                    id="themeToggle"
+                    class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="테마 토글"
+                >
+                    <span class="inline dark:hidden">🌙</span>
+                    <span class="hidden dark:inline">☀️</span>
+                </button>
+            </div>
+
+            <!-- 계산기 본체 -->
+            <div class="calculator bg-white dark:bg-gray-800 p-6">
+                <!-- 디스플레이 -->
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 mb-6">
+                    <div class="text-right text-gray-500 dark:text-gray-400 text-sm mb-2" id="previousOperand"></div>
+                    <div class="display-text text-right text-gray-900 dark:text-white break-words" id="display">0</div>
+                </div>
+
+                <!-- 버튼 그리드 -->
+                <div class="grid grid-cols-4 gap-3">
+                    <!-- 첫 번째 행: AC, DEL, ÷ -->
+                    <button class="col-span-2 btn bg-red-500 hover:bg-red-600 text-white font-semibold py-4 rounded-lg transition-all" data-action="clear">
+                        AC
+                    </button>
+                    <button class="btn bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-lg transition-all" data-action="delete">
+                        DEL
+                    </button>
+                    <button class="btn operator bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition-all" data-operator="÷">
+                        ÷
+                    </button>
+
+                    <!-- 숫자 행 1: 7, 8, 9, × -->
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="7">7</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="8">8</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="9">9</button>
+                    <button class="btn operator bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition-all" data-operator="×">
+                        ×
+                    </button>
+
+                    <!-- 숫자 행 2: 4, 5, 6, - -->
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="4">4</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="5">5</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="6">6</button>
+                    <button class="btn operator bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition-all" data-operator="-">
+                        -
+                    </button>
+
+                    <!-- 숫자 행 3: 1, 2, 3, + -->
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="1">1</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="2">2</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="3">3</button>
+                    <button class="btn operator bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition-all" data-operator="+">
+                        +
+                    </button>
+
+                    <!-- 마지막 행: 0, ., = -->
+                    <button class="col-span-2 btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number="0">0</button>
+                    <button class="btn number bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold py-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all" data-number=".">.</button>
+                    <button class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-4 rounded-lg transition-all" data-action="equals">
+                        =
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 계산기 상태 관리
+        class Calculator {
+            constructor() {
+                this.previousOperand = '';
+                this.currentOperand = '0';
+                this.operation = null;
+                this.updateDisplay();
+                this.setupEventListeners();
+                this.setupTheme();
+            }
+
+            // 숫자/소수점 입력
+            appendNumber(number) {
+                // 0일 때 0을 추가하지 않음 (단, 소수점 입력 시 제외)
+                if (number === '.' && this.currentOperand.includes('.')) return;
+                if (this.currentOperand === '0' && number !== '.') {
+                    this.currentOperand = number;
+                } else {
+                    this.currentOperand += number;
+                }
+                this.updateDisplay();
+            }
+
+            // 연산자 설정
+            chooseOperation(operation) {
+                if (this.currentOperand === '') return;
+                if (this.previousOperand !== '') {
+                    this.compute();
+                }
+                this.operation = operation;
+                this.previousOperand = this.currentOperand;
+                this.currentOperand = '';
+                this.updateDisplay();
+            }
+
+            // 계산 수행
+            compute() {
+                let computation;
+                const prev = parseFloat(this.previousOperand);
+                const current = parseFloat(this.currentOperand);
+                if (isNaN(prev) || isNaN(current)) return;
+
+                switch (this.operation) {
+                    case '+':
+                        computation = prev + current;
+                        break;
+                    case '-':
+                        computation = prev - current;
+                        break;
+                    case '×':
+                        computation = prev * current;
+                        break;
+                    case '÷':
+                        // 0으로 나누기 방지
+                        if (current === 0) {
+                            alert('0으로 나눌 수 없습니다');
+                            return;
+                        }
+                        computation = prev / current;
+                        break;
+                    default:
+                        return;
+                }
+
+                // 결과를 소수점 10자리까지 반올림
+                this.currentOperand = Math.round(computation * 10000000000) / 10000000000;
+                this.operation = null;
+                this.previousOperand = '';
+                this.updateDisplay();
+            }
+
+            // 전체 초기화
+            clear() {
+                this.previousOperand = '';
+                this.currentOperand = '0';
+                this.operation = null;
+                this.updateDisplay();
+            }
+
+            // 마지막 숫자 삭제
+            delete() {
+                if (this.currentOperand === '') return;
+                this.currentOperand = this.currentOperand.toString().slice(0, -1);
+                if (this.currentOperand === '') {
+                    this.currentOperand = '0';
+                }
+                this.updateDisplay();
+            }
+
+            // 디스플레이 업데이트
+            updateDisplay() {
+                const displayElement = document.getElementById('display');
+                const previousElement = document.getElementById('previousOperand');
+
+                // 현재 입력값 표시
+                displayElement.innerText = this.formatNumber(this.currentOperand);
+
+                // 이전 연산과 연산자 표시
+                if (this.operation != null) {
+                    previousElement.innerText = `${this.formatNumber(this.previousOperand)} ${this.operation}`;
+                } else {
+                    previousElement.innerText = '';
+                }
+            }
+
+            // 숫자 포매팅 (천 단위 구분)
+            formatNumber(number) {
+                const stringNumber = number.toString();
+                const integerDigits = parseFloat(stringNumber.split('.')[0]);
+                const decimalDigits = stringNumber.split('.')[1];
+
+                let integerDisplay;
+                if (isNaN(integerDigits)) {
+                    integerDisplay = '';
+                } else {
+                    integerDisplay = integerDigits.toLocaleString('en', {
+                        maximumFractionDigits: 0
+                    });
+                }
+
+                if (decimalDigits != null) {
+                    return `${integerDisplay}.${decimalDigits}`;
+                } else {
+                    return integerDisplay;
+                }
+            }
+
+            // 이벤트 리스너 설정
+            setupEventListeners() {
+                // 숫자 버튼
+                document.querySelectorAll('[data-number]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.appendNumber(button.dataset.number);
+                        this.animateButton(button);
+                    });
+                });
+
+                // 연산자 버튼
+                document.querySelectorAll('[data-operator]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.chooseOperation(button.dataset.operator);
+                        this.animateButton(button);
+                    });
+                });
+
+                // 액션 버튼 (AC, DEL, =)
+                document.querySelectorAll('[data-action]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const action = button.dataset.action;
+                        if (action === 'clear') {
+                            this.clear();
+                        } else if (action === 'delete') {
+                            this.delete();
+                        } else if (action === 'equals') {
+                            this.compute();
+                        }
+                        this.animateButton(button);
+                    });
+                });
+
+                // 키보드 지원
+                document.addEventListener('keydown', (e) => {
+                    if (e.key >= '0' && e.key <= '9') this.appendNumber(e.key);
+                    if (e.key === '.') this.appendNumber('.');
+                    if (e.key === '+') {
+                        e.preventDefault();
+                        this.chooseOperation('+');
+                    }
+                    if (e.key === '-') {
+                        e.preventDefault();
+                        this.chooseOperation('-');
+                    }
+                    if (e.key === '*') {
+                        e.preventDefault();
+                        this.chooseOperation('×');
+                    }
+                    if (e.key === '/') {
+                        e.preventDefault();
+                        this.chooseOperation('÷');
+                    }
+                    if (e.key === 'Enter' || e.key === '=') {
+                        e.preventDefault();
+                        this.compute();
+                    }
+                    if (e.key === 'Backspace') {
+                        e.preventDefault();
+                        this.delete();
+                    }
+                    if (e.key === 'Escape') {
+                        this.clear();
+                    }
+                });
+            }
+
+            // 버튼 애니메이션
+            animateButton(button) {
+                button.classList.add('btn-press');
+                setTimeout(() => button.classList.remove('btn-press'), 100);
+            }
+
+            // 테마 관리
+            setupTheme() {
+                const themeToggle = document.getElementById('themeToggle');
+                const html = document.documentElement;
+
+                // 저장된 테마 불러오기
+                const savedTheme = localStorage.getItem('calculator-theme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    html.classList.add('dark');
+                }
+
+                // 테마 토글
+                themeToggle.addEventListener('click', () => {
+                    html.classList.toggle('dark');
+                    const isDark = html.classList.contains('dark');
+                    localStorage.setItem('calculator-theme', isDark ? 'dark' : 'light');
+                });
+            }
+        }
+
+        // 계산기 초기화
+        const calculator = new Calculator();
+    </script>
+</body>
+</html>
