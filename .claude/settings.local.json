@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "mcp__ide__getDiagnostics"
     ]
   },
   "outputStyle": "Learning"
